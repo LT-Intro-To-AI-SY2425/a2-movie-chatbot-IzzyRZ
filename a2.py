@@ -21,7 +21,7 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
     # keep checking as long as we haven't hit the end of either pattern or source while
     # pind is still a valid index OR sind is still a valid index (valid index means that
     # the index is != to the length of the list)
-    while sind < len(source) or pind < len([pattern]):
+    while sind < len(source) or pind < len(pattern):
         # your job is to fill out the body of this loop
 
         # you should delete the following line
@@ -35,15 +35,26 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
         # If you get stuck on this one, we encourage you to attempt the other conditions
         #   and come back to this one afterwards
         elif pattern[pind] == "%":
+            percentString = ""
             if pind + 1 == len(pattern):
-                result.append(source[sind])
-                sind += 1
+                while(sind != len(source)):
+                    if(percentString != ""):
+                        percentString += " " 
+                    percentString += source[sind]
+                    sind += 1
+                result.append(percentString)
+                return result
             else:
+                if source[sind] == pattern[pind+1]:
+                    result.append("")
                 while source[sind] != pattern[pind+1]:
                     if sind < len(source):
-                        result.append(source[sind])
+                        if(percentString != ""):
+                            percentString += " " 
+                        percentString += source[sind]
                         sind += 1
                     else: return None
+                result.append(percentString)
                 pind += 1
 
         # 3) if we reached the end of the source but not the pattern
@@ -66,7 +77,7 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
             return None
 
     return result
-
+print(match(["x","y","z"],["x","y","z","z"]))
 
 if __name__ == "__main__":
     assert match(["x", "y", "z"], ["x", "y", "z"]) == [], "test 1 failed"
