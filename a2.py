@@ -45,8 +45,6 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
                 result.append(percentString)
                 return result
             else:
-                if source[sind] == pattern[pind+1]:
-                    result.append("")
                 while source[sind] != pattern[pind+1]:
                     if sind < len(source):
                         if(percentString != ""):
