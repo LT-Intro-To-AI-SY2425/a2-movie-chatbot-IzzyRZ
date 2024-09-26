@@ -22,10 +22,6 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
     # pind is still a valid index OR sind is still a valid index (valid index means that
     # the index is != to the length of the list)
     while sind < len(source) or pind < len(pattern):
-        # your job is to fill out the body of this loop
-
-        # you should delete the following line
-        # return ["Not done yet :)"]
 
         # 1) if we reached the end of the pattern but not source
         if  sind < len(source) and pind == len(pattern):
